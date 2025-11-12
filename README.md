@@ -8,7 +8,8 @@ Desenvolvida por César Augusto Victor — Mestrando em Engenharia Elétrica e d
 
 🧩 Sobre a Biblioteca
 
-A sensor_csr é uma biblioteca para Arduino/C++ desenvolvida para uso com barras de sensores QTR genéricos amplamente empregadas em robôs seguidores de linha como é visto na figura abaixo.
+A sensor_csr é uma biblioteca para Arduino/C++ desenvolvida para uso com barras de sensores QTR genéricos amplamente empregadas em robôs seguidores de linha como é mostrado na figura abaixo.
+
 ![Demonstração do sensor_csr](docs/sensor.jpg)
 
 Ela oferece uma interface simples de uso parecida com a biblioteca QTRSensors da Pololu, porém otimizada para sensores analógicos de baixo custo e fácil integração com projetos de robótica.
@@ -140,6 +141,7 @@ Este projeto é licenciado sob a MIT License — livre para uso acadêmico e com
 desde que citada a autoria.
 
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
+
 
 
 
