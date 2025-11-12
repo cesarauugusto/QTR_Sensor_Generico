@@ -144,10 +144,10 @@ sensor_csr/
 ├── LICENSE
 └── README.md
 
-#🧾 Citação (Zenodo DOI)
+#🧾 Citação 
+César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo. 
+📘 https://doi.org/10.5281/zenodo.17593098
 
-César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
-https://doi.org/10.5281/zenodo.17593098
 ----------------------------------------------------------------------------------
 #📜 Licença
 
@@ -156,6 +156,7 @@ desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
