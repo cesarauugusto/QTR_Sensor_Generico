@@ -71,8 +71,8 @@ Os limiares de cor devem ser definidos no seu código `.ino`:
 ```cpp
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO  900
+```
 < LIMIAR_BRANCO → branco (0)
-
 > LIMIAR_PRETO → preto (1)
 
 intermediário → zona “cinza” (tratado como branco)
@@ -85,10 +85,11 @@ Tipo de pista (fita preta em fundo branco ou o inverso)
 
 Iluminação do ambiente
 
-🧪 Calibrando e Encontrando o Limiar Ideal
+## 🧪 **Calibração e Limiar Ideal**
 
-Use o trecho abaixo para medir os valores médios de branco e preto:
+Use o trecho abaixo para medir os valores médios de **branco** e **preto**:
 
+```cpp
 uint16_t valores[NUM_SENSORES];
 qtr.readRaw(valores);
 for (int i = 0; i < NUM_SENSORES; i++) {
@@ -97,43 +98,50 @@ for (int i = 0; i < NUM_SENSORES; i++) {
 }
 Serial.println();
 delay(200);
+```
+## ⚙️ **Procedimento de Calibração**
 
-Procedimento:
-
-Coloque o robô sobre o branco da pista → anote a média.
-
-Coloque sobre o preto da linha → anote a média.
-
-Atualize no .ino:
-
+1. Coloque o robô **sobre o branco da pista** → anote a média.  
+2. Coloque o robô **sobre o preto da linha** → anote a média.  
+3. Atualize os valores no arquivo `.ino`:
+4. 
+```cpp
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO 900
+```
 
+# 💡 Esses valores são passados automaticamente para a biblioteca
+# em cada chamada de ErroSensor().
 
-Esses valores são passados automaticamente para a biblioteca em cada chamada de ErroSensor().
+# ----------------------------------------------------------
+# 🧠 Lógica Interna Simplificada
+# ----------------------------------------------------------
 
-🧠 Lógica Interna Simplificada
+# Etapas do processamento:
+# 1. Leitura analógica: coleta e média das leituras de cada sensor.
+# 2. Normalização: mapeia para a faixa 0–1000 com base na calibração.
+# 3. Binarização: converte em 0 ou 1 conforme os limiares definidos.
+# 4. Cálculo do erro: deslocamento médio da linha com base nos sensores ativos.
+# 5. Saída discreta: erro múltiplo de 1000.
 
-Leitura analógica: coleta e média das leituras de cada sensor.
+# ----------------------------------------------------------
+# 📊 Tabela de Erro
+# ----------------------------------------------------------
+# | Erro  | Significado          |
+# |:------|:---------------------|
+# |-4000  | Linha à esquerda     |
+# |0      | Centralizado         |
+# |+4000  | Linha à direita      |
 
-Normalização: mapeia para a faixa 0–1000 com base na calibração.
+# ----------------------------------------------------------
+# 🧩 Exemplo de Padrão Lido
+# ----------------------------------------------------------
+# bits = "00011000"
 
-Binarização: converte em 0 ou 1 conforme os limiares definidos.
-
-Cálculo do erro: deslocamento médio da linha com base nos sensores ativos.
-
-Saída discreta: erro múltiplo de 1000.
-
-Erro	Significado
--4000	Linha à esquerda
-0	Centralizado
-+4000	Linha à direita
-
-Exemplo de padrão lido:
-
-bits = "00011000"
-
-📦 Estrutura do Projeto
+# ----------------------------------------------------------
+# 📦 Estrutura do Projeto
+# ----------------------------------------------------------
+cat <<'EOF' > estrutura.txt
 sensor_csr/
 ├── src/
 │   ├── sensor_csr.cpp
@@ -145,17 +153,23 @@ sensor_csr/
 │   └── sensor.jpg
 ├── LICENSE
 └── README.md
+EOF
 
-🧾 Citação (Zenodo DOI)
+# ----------------------------------------------------------
+# 🧾 Citação (Zenodo DOI)
+# ----------------------------------------------------------
+# César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
+# https://doi.org/10.5281/zenodo.17593098
 
-César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
-https://doi.org/10.5281/zenodo.17593098
+# ----------------------------------------------------------
+# 📜 Licença
+# ----------------------------------------------------------
+# Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial,
+# desde que citada a autoria.
+# © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
-📜 Licença
+# ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
 
-Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial, desde que citada a autoria.
-
-© 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 
 
