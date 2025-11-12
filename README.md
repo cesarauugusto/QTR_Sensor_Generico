@@ -12,6 +12,7 @@ Licença: [MIT](LICENSE)
 
 A biblioteca **sensor_csr** foi criada para uso com **barras de sensores QTR genéricos** (não-Pololu), amplamente utilizadas em robôs seguidores de linha.  
 Ela implementa uma interface simplificada, compatível com a estrutura da biblioteca **QTRSensors** da Pololu, mas adaptada para sensores analógicos de baixo custo e sem controle de emissor IR.
+![Demonstração do sensor_csr](docs/sensor.jpg)
 
 Permite:
 - Calibração individual dos sensores.
@@ -108,3 +109,4 @@ O erro resultante é um múltiplo de 1000:
 
 Saída:
 A função ErroSensor() retorna esse erro e preenche um array bits[] que mostra o padrão lido (ex.: "00011000").
+
