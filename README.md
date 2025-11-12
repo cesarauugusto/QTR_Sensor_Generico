@@ -112,9 +112,7 @@ delay(200);
 
 💡 Esses valores são passados automaticamente para a biblioteca em cada chamada de ErroSensor().
 
-# ----------------------------------------------------------
 # 🧠 Lógica Interna Simplificada
-# ----------------------------------------------------------
 
 Etapas do processamento:
 1. Leitura analógica: coleta e média das leituras de cada sensor.
@@ -123,23 +121,19 @@ Etapas do processamento:
 4. Cálculo do erro: deslocamento médio da linha com base nos sensores ativos.
 5. Saída discreta: erro múltiplo de 1000.
 
- ----------------------------------------------------------
 # 📊 Tabela de Erro
- ----------------------------------------------------------
+
 | Erro  | Significado          |
 |:------|:---------------------|
 |-4000  | Linha à esquerda     |
 |0      | Centralizado         |
 |+4000  | Linha à direita      |
 
- ----------------------------------------------------------
- 🧩 Exemplo de Padrão Lido
- ----------------------------------------------------------
+🧩 Exemplo de Padrão Lido
  bits = "00011000"
 
-# ----------------------------------------------------------
-# 📦 Estrutura do Projeto
-# ----------------------------------------------------------
+📦 Estrutura do Projeto
+
 
 ├── src/
 │   ├── sensor_csr.cpp
@@ -152,20 +146,19 @@ Etapas do processamento:
 ├── LICENSE
 └── README.md
 
-----------------------------------------------------------
 # 🧾 Citação (Zenodo DOI)
-----------------------------------------------------------
+
 César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
 https://doi.org/10.5281/zenodo.17593098
-
-----------------------------------------------------------
+----------------------------------------------------------------------------------
 # 📜 Licença
- ----------------------------------------------------------
+
 Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial,
 desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 # ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
