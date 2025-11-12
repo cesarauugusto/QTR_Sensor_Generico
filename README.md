@@ -35,12 +35,14 @@ Ela oferece uma interface simples e compatível com a biblioteca **QTRSensors da
 
 ---
 
+
 ## 🤖 Códigos de Exemplo Incluídos
 
-| Código | Driver  | Descrição |
-|:------:|:--------:|:----------|
-| `robot2` | DRV8833 | Controle PD dinâmico com **GAP detection** baseado nos bits `00000000` |
-| `robotL298N` | L298N | Versão adaptada para drivers **H-Bridge clássicos**, com a mesma lógica de controle |
+| Código | Driver | Descrição |
+|:-------|:--------|:-----------|
+| **`robot`** | Genérico | Exemplo base de **robô seguidor de linha padrão**, com controle PD simples e suporte aos sensores QTR genéricos. Ideal para aprendizado inicial e testes de calibração. |
+| **`robot2`** | **DRV8833 (2 pinos de controle)** | Versão **aperfeiçoada** com detecção de **gaps (pistas tracejadas)**. Utiliza drivers que empregam **apenas dois pinos por motor** (xIN1/xIN2), como o **DRV8833** — onde o PWM é aplicado diretamente em um dos pinos. |
+| **`robot3`** | **L298N / TB6612FNG (3 pinos de controle)** | Mesma lógica e controle do `robot2`, mas adaptada para drivers **com 3 pinos por motor**: dois de direção (**IN1/IN2**) e um pino **Enable (PWM)** para controle de velocidade — comum em **L298N** e **TB6612FNG**. |
 
 ---
 
@@ -143,6 +145,7 @@ desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
