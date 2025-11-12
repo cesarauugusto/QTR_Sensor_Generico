@@ -1,60 +1,75 @@
-# sensor_csr
+🚀 sensor_csr
 
-Biblioteca **sensor_csr** para Arduino/C++, desenvolvida por  
-**César Augusto Victor** — Mestrando em Engenharia Elétrica e de Computação (UFC Sobral)  
-📧 E-mail: [cesartri2012@gmail.com](mailto:cesartri2012@gmail.com)
+Biblioteca para sensores QTR genéricos (não-Pololu)
+Desenvolvida por César Augusto Victor — Mestrando em Engenharia Elétrica e de Computação (UFC Sobral)
+📧 cesartri2012@gmail.com
 
-Licença: [MIT](LICENSE)
+🧾 DOI: 10.5281/zenodo.17593098
 
----
+🧩 Sobre a Biblioteca
 
-## 📘 Visão Geral
-
-A biblioteca **sensor_csr** foi criada para uso com **barras de sensores QTR genéricos** (não-Pololu), amplamente utilizadas em robôs seguidores de linha.  
-Ela implementa uma interface simplificada, compatível com a estrutura da biblioteca **QTRSensors** da Pololu, mas adaptada para sensores analógicos de baixo custo.
+A sensor_csr é uma biblioteca para Arduino/C++ desenvolvida para uso com barras de sensores QTR genéricos amplamente empregadas em robôs seguidores de linha como é visto na figura abaixo.
 ![Demonstração do sensor_csr](docs/sensor.jpg)
 
-Permite:
-- Calibração individual dos sensores.
-- Leitura analógica e normalização (0–1000).
-- Geração automática de um **padrão binário** (0 = branco, 1 = preto).
-- Cálculo do **erro discreto da linha** em intervalos de `-4000` a `+4000`.
-- Função direta `ErroSensor()` para integração com o código do robô.
+Ela oferece uma interface simples de uso parecida com a biblioteca QTRSensors da Pololu, porém otimizada para sensores analógicos de baixo custo e fácil integração com projetos de robótica.
 
----
+⚙️ Principais Recursos
 
-## ⚙️ Como funciona
+✅ Calibração automática individual de cada sensor
+✅ Leitura analógica normalizada entre 0–1000
+✅ Conversão binária automática (0 = branco / 1 = preto)
+✅ Cálculo de erro discreto no intervalo -4000 a +4000
+✅ Função direta ErroSensor() para integração simples com o robô
+✅ Compatível com DRV8833 e L298N
+✅ Suporte completo a pistas tracejadas (GAP detection)
 
-Cada sensor da barra lê um valor **analógico** (0–1023) proporcional à luz refletida pela superfície:
-- **Superfícies brancas** → refletem mais luz → valores altos.
-- **Superfícies pretas** → refletem menos luz → valores baixos.
+🤖 Códigos de Exemplo Incluídos
+Código	Driver	Descrição
+robot2	DRV8833	Controle PD dinâmico com resposta rápida e sistema de GAP detection baseado nos bits 00000000.
+robotL298N	L298N	Versão adaptada com a mesma lógica de controle e verificação de gaps, ideal para drivers H-Bridge clássicos.
 
-Durante a calibração (`qtr.calibrate()`), a biblioteca coleta os valores **mínimos e máximos** que cada sensor pode medir, e usa isso para normalizar a saída na escala **0 a 1000**.
+💡 Sistema de GAP detection:
+Durante a leitura, se todos os sensores retornam "00000000", o robô interpreta como um espaço tracejado (gap) e:
 
-Depois disso, a leitura de cada sensor pode ser comparada com dois **limiares definidos no seu código**:
+Avança suavemente por um ciclo;
+
+Caso o gap continue, o controle usa o último erro válido (lastNonZeroErro) para corrigir a trajetória automaticamente.
+
+Essa abordagem garante passagem fluida por tracejados sem perder a linha nem gerar oscilações.
+
+🔍 Como Funciona
+
+Cada sensor lê um valor analógico (0–1023) proporcional à luz refletida:
+
+Cor da Superfície	Intensidade	Valor Analógico	Bit
+Branco	Alta reflexão	Alto	0
+Preto	Baixa reflexão	Baixo	1
+
+Durante a calibração (qtr.calibrate()), a biblioteca coleta os valores mínimos e máximos e normaliza tudo entre 0 e 1000.
+
+Os limiares de cor devem ser definidos no seu código principal (.ino):
 
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO  900
 
-- Valores abaixo de LIMIAR_BRANCO → considerados branco (0)
 
-- Valores acima de LIMIAR_PRETO → considerados preto (1)
+< LIMIAR_BRANCO → branco (0)
 
-- Valores intermediários → zona “cinza” → tratados como 0
+> LIMIAR_PRETO → preto (1)
 
-- Esses limiares variam conforme:
+intermediário → zona “cinza”, tratado como branco
 
-- O tipo do sensor (QTR genérico, TCRT5000, etc.),
+Esses limiares podem variar conforme:
 
-- O tipo de pista (fita preta em fundo branco ou o inverso),
+o tipo de sensor (QTR genérico, TCRT5000, etc.);
 
-- A iluminação do ambiente.
+o tipo de pista (fita preta em fundo branco ou o inverso);
 
-🧪 Como determinar o limiar ideal
+a iluminação do ambiente.
 
-Monte seu robô sobre a pista.
+🧪 Calibrando e Encontrando o Limiar Ideal
 
-No código de teste, use algo como:
+Use o trecho abaixo para medir os valores médios de branco e preto:
 
 uint16_t valores[NUM_SENSORES];
 qtr.readRaw(valores);
@@ -66,49 +81,66 @@ Serial.println();
 delay(200);
 
 
-Leia os valores no Serial Monitor:
+🧭 Procedimento:
 
-Coloque o sensor sobre o branco da pista → anote a média.
+Coloque o robô sobre o branco da pista → anote a média.
 
 Coloque sobre o preto da linha → anote a média.
 
-Defina os limiares no .ino:
-
-#define LIMIAR_BRANCO  valor_médio_branco
-#define LIMIAR_PRETO   valor_médio_preto
-
-
-Exemplo:
+Atualize no .ino:
 
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO  900
 
 
-Esses valores são passados à biblioteca toda vez que ErroSensor() é chamada.
+Esses valores são passados automaticamente para a biblioteca a cada chamada de ErroSensor().
 
-🧠 Funcionamento interno simplificado
+🧠 Lógica Interna Simplificada
 
-Leitura analógica:
-Cada sensor é lido várias vezes (média definida por setSamplesPerSensor).
+Leitura analógica: coleta e média das leituras de cada sensor.
 
-Normalização:
-Cada valor é mapeado para 0–1000 conforme os limites calibrados.
+Normalização: mapeia para a faixa 0–1000 com base na calibração.
 
-Binarização:
-Cada sensor é classificado como 0 (branco) ou 1 (preto) com base nos limiares definidos.
+Binarização: converte em 0/1 conforme os limiares definidos.
 
-Cálculo do erro:
-O centro da linha é calculado considerando a média ponderada dos sensores ativos ('1').
-O erro resultante é um múltiplo de 1000:
+Cálculo do erro: calcula o deslocamento médio da linha com base nos sensores ativos.
 
--4000 → linha à esquerda
+Saída discreta: erro múltiplo de 1000:
 
-0 → centrado
+Erro	Significado
+-4000	Linha à esquerda
+0	Centralizado
++4000	Linha à direita
 
-+4000 → linha à direita
+Exemplo de padrão lido:
 
-Saída:
-A função ErroSensor() retorna esse erro e preenche um array bits[] que mostra o padrão lido (ex.: "00011000").
+bits = "00011000"
+
+📦 Estrutura do Projeto
+sensor_csr/
+├── src/
+│   ├── sensor_csr.cpp
+│   └── sensor_csr.h
+├── examples/
+│   ├── robot2/robot2.ino
+│   └── robotL298N/robotL298N.ino
+├── docs/
+│   └── sensor.jpg
+├── LICENSE
+└── README.md
+
+🧾 Citação (Zenodo DOI)
+
+César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
+📘 https://doi.org/10.5281/zenodo.17593098
+
+📜 Licença
+
+Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial,
+desde que citada a autoria.
+
+© 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
+
 
 
 
