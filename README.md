@@ -71,9 +71,91 @@ Os limiares de cor devem ser definidos no seu código `.ino`:
 ```cpp
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO  900
+< LIMIAR_BRANCO → branco (0)
+
+> LIMIAR_PRETO → preto (1)
+
+intermediário → zona “cinza” (tratado como branco)
+
+Esses limiares variam conforme:
+
+Tipo de sensor (QTR genérico, TCRT5000, etc.)
+
+Tipo de pista (fita preta em fundo branco ou o inverso)
+
+Iluminação do ambiente
+
+🧪 Calibrando e Encontrando o Limiar Ideal
+
+Use o trecho abaixo para medir os valores médios de branco e preto:
+
+uint16_t valores[NUM_SENSORES];
+qtr.readRaw(valores);
+for (int i = 0; i < NUM_SENSORES; i++) {
+  Serial.print(valores[i]);
+  Serial.print("\t");
+}
+Serial.println();
+delay(200);
+
+Procedimento:
+
+Coloque o robô sobre o branco da pista → anote a média.
+
+Coloque sobre o preto da linha → anote a média.
+
+Atualize no .ino:
+
+#define LIMIAR_BRANCO 600
+#define LIMIAR_PRETO 900
 
 
+Esses valores são passados automaticamente para a biblioteca em cada chamada de ErroSensor().
 
+🧠 Lógica Interna Simplificada
+
+Leitura analógica: coleta e média das leituras de cada sensor.
+
+Normalização: mapeia para a faixa 0–1000 com base na calibração.
+
+Binarização: converte em 0 ou 1 conforme os limiares definidos.
+
+Cálculo do erro: deslocamento médio da linha com base nos sensores ativos.
+
+Saída discreta: erro múltiplo de 1000.
+
+Erro	Significado
+-4000	Linha à esquerda
+0	Centralizado
++4000	Linha à direita
+
+Exemplo de padrão lido:
+
+bits = "00011000"
+
+📦 Estrutura do Projeto
+sensor_csr/
+├── src/
+│   ├── sensor_csr.cpp
+│   └── sensor_csr.h
+├── examples/
+│   ├── robot2/robot2.ino
+│   └── robotL298N/robotL298N.ino
+├── docs/
+│   └── sensor.jpg
+├── LICENSE
+└── README.md
+
+🧾 Citação (Zenodo DOI)
+
+César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo.
+https://doi.org/10.5281/zenodo.17593098
+
+📜 Licença
+
+Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial, desde que citada a autoria.
+
+© 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 
 
