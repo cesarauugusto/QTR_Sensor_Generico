@@ -17,7 +17,7 @@ Biblioteca para sensores **QTR genéricos (não-Pololu)** desenvolvida por
 
 A **sensor_csr** é uma biblioteca para **Arduino/C++** desenvolvida para uso com barras de sensores **QTR genéricos**, amplamente empregadas em **robôs seguidores de linha**, como mostrado abaixo:
 
-> *Demonstração do sensor_csr (imagem em `/docs/sensor.jpg`)*
+![Demonstração do sensor_csr](docs/sensor.jpg)
 
 Ela oferece uma interface simples e compatível com a biblioteca **QTRSensors da Pololu**, porém otimizada para sensores **analógicos de baixo custo**, com foco em fácil integração com projetos de robótica.
 
@@ -143,6 +143,7 @@ desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
