@@ -32,7 +32,7 @@ Cada sensor da barra lê um valor **analógico** (0–1023) proporcional à luz 
 Durante a calibração (`qtr.calibrate()`), a biblioteca coleta os valores **mínimos e máximos** que cada sensor pode medir, e usa isso para normalizar a saída na escala **0 a 1000**.
 
 Depois disso, a leitura de cada sensor pode ser comparada com dois **limiares definidos no seu código**:
-```cpp
+
 #define LIMIAR_BRANCO 600
 #define LIMIAR_PRETO  900
 
@@ -109,4 +109,5 @@ O erro resultante é um múltiplo de 1000:
 
 Saída:
 A função ErroSensor() retorna esse erro e preenche um array bits[] que mostra o padrão lido (ex.: "00011000").
+
 
