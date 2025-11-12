@@ -131,31 +131,19 @@ Etapas do processamento:
 
 🧩 Exemplo de Padrão Lido
  bits = "00011000"
-
-sensor_csr/
-├── src/
-│   ├── sensor_csr.cpp
-│   └── sensor_csr.h
-├── examples/
-│   ├── robot2/robot2.ino
-│   └── robotL298N/robotL298N.ino
-├── docs/
-│   └── sensor.jpg
-├── LICENSE
-└── README.md
-
+ ----------------------------------------------------------------------------------
+ 
 #🧾 Citação 
 César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo. 
 📘 https://doi.org/10.5281/zenodo.17593098
 
-----------------------------------------------------------------------------------
 #📜 Licença
-
 Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial,
 desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
