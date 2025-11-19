@@ -1,7 +1,11 @@
 # 🚀 sensor_csr
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Arduino](https://img.shields.io/badge/Arduino-Compatible-blue.svg)](https://www.arduino.cc/)
 [![C++](https://img.shields.io/badge/Language-C++-brightgreen.svg)](https://isocpp.org/)
+[![Artigo](https://img.shields.io/badge/Artigo-SENGI20-blue)](https://www.even3.com.br/anais/sengi2020/271818/)
+[![Publicação](https://img.shields.io/badge/Publicação-E--BOOK-orange)](https://web.archive.org/web/20201209112322id_/https://www.uniedusul.com.br/wp-content/uploads/2020/10/E-BOOK-GESTAO-EMPRESARIAL-TEORIA-E-PRATICA.pdf#page=28)
+[![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
 
 **Biblioteca para sensores** QTR genéricos ***(não-Pololu)*** desenvolvida por
 ***César Augusto Victor***, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
@@ -18,7 +22,8 @@ A **sensor_csr** fornece uma interface simples e robusta para barras de sensores
   <img src="docs/seguidorgif.gif" width="300">
 </p
   
-A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: https://github.com/cesarauugusto/Projeto_Robo_Seguidor
+A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: [![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
+https://github.com/cesarauugusto/Projeto_Robo_Seguidor
 
 Ela segue a base da QTRSensors original da Pololu, mas adiciona:
 
@@ -194,6 +199,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 **⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
