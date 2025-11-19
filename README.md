@@ -4,8 +4,7 @@
 [![C++](https://img.shields.io/badge/Language-C++-brightgreen.svg)](https://isocpp.org/)
 
 **Biblioteca para sensores** QTR genéricos ***(não-Pololu)*** desenvolvida por
-
- **César Augusto Victor**, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
+***César Augusto Victor***, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
 ***📧 cesartri2012@gmail.com***
 ***📘 DOI: https://doi.org/10.5281/zenodo.17593098***
 
