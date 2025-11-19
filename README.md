@@ -14,7 +14,7 @@ Biblioteca para sensores **QTR genéricos (não-Pololu) desenvolvida por
 A **sensor_csr** fornece uma interface simples e robusta para barras de sensores **QTR genéricos analógicos**, amplamente utilizadas em **robôs seguidores de linha**.
 <p align="center">
   <img src="docs/sensor.jpg" width="450">
-  <img src="docs/seguidorgif.gif" width="400">
+  <img src="docs/seguidorgif.gif" width="300">
 </p
   
 A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: https://github.com/cesarauugusto/Projeto_Robo_Seguidor
@@ -172,6 +172,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 **⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
