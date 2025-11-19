@@ -8,6 +8,8 @@ Biblioteca para sensores **QTR genéricos (não-Pololu) desenvolvida por
 📧 cesartri2012@gmail.com
 📘 DOI: https://doi.org/10.5281/zenodo.17593098
 
+---
+
 Bilioteca aplicada ao Robo seguidor de Linha do Repositorio:
 https://github.com/cesarauugusto/Projeto_Robo_Seguidor
 <p align="center">
@@ -171,6 +173,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
