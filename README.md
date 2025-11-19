@@ -14,15 +14,14 @@ Biblioteca para sensores **QTR genéricos (não-Pololu) desenvolvida por
 A **sensor_csr** fornece uma interface simples e robusta para barras de sensores **QTR genéricos analógicos**, amplamente utilizadas em **robôs seguidores de linha**.
 <p align="center">
   <img src="docs/sensor.jpg" width="450">
-  <img src="docs/seguidorgif.gif" width="200">
+  <img src="docs/seguidorgif.gif" width="400">
 </p
   
-A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: 
-https://github.com/cesarauugusto/Projeto_Robo_Seguidor
+A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: https://github.com/cesarauugusto/Projeto_Robo_Seguidor
 Ela segue a base da QTRSensors original da Pololu, mas adiciona:
 
 - 📌 Calibração simplificada  
-- 📌 Cálculo de erro discreto padrão de robótica (múltiplos de 1000)  
+- 📌 Cálculo de erro discreto (múltiplos de 1000)  
 - 📌 Sistema nativo de **detecção de GAP (pistas tracejadas)**  
 - 📌 Função única **ErroSensor()**, que retorna automaticamente:
 
@@ -57,7 +56,7 @@ Ela identifica automaticamente quando a barra lê:
 Quando isso ocorre, significa que o robô:
 entrou em um trecho tracejado ou saiu momentaneamente da linha por irregularidade da pista.
 
-🔧 Comportamento:
+**🔧 Comportamento:**
 O código detecta o GAP.
 A biblioteca retorna true.
 O robô passa a usar o último erro válido:
@@ -70,14 +69,16 @@ else
     ultimoErroValido = erro;
 ```
 
-Assim que um sensor voltar a enxergar 1, o GAP encerra.
+Assim que um sensor voltar a ler a linha, o GAP encerra.
 Isso permite ao robô atravessar tracejados sem oscilações e sem perder a linha.
 
 📂 Exemplos Incluídos
 exemple - Teste exemplo para verificação dos sensores
 codigo_robo	- Controle completo com GAP e PID.
 
-📌 Recomendação do uso no Robô Seguidor de Linha.
+---
+
+#📌 Recomendação do uso no Robô Seguidor de Linha.
 1️⃣ Abra o exemplo codigo_do_robo
 2️⃣ No código, configure:
 
@@ -115,7 +116,8 @@ Ou seja:
 #define LIMIAR_PRETO  800
 ```
 Isso vai filtrar ruídos e garantir a leitura estável.
-Após o ajuste dos Sensores altere SENSOR_DEBUG Para 0
+
+**Após o ajuste dos Sensores altere SENSOR_DEBUG Para 0**
 
 ```cpp
 #define SENSOR_DEBUG 0
@@ -150,7 +152,7 @@ zero → centralizado
 
 positivo → linha à direita
 
-📊 Tabela Simplificada de Erro
+**📊 Tabela Simplificada de Erro**
 Cada padrão binário corresponde a um erro discreto configurado na biblioteca.
 
 Ex.:
@@ -159,17 +161,18 @@ Ex.:
 00001110  → erro = +3 * 1000
 10000000  → erro = +7 * 1000
 
-🧾 Citação
+**🧾 Citação**
 Se utilizar esta biblioteca em projetos acadêmicos:
 
-César Augusto Victor. (2025). Library for generic QTR sensors (1.0). Zenodo.
-https://doi.org/10.5281/zenodo.17593098
+***César Augusto Victor. (2025). Library for generic QTR sensors (1.0). Zenodo.
+https://doi.org/10.5281/zenodo.17593098***
 
-📜 Licença
+**📜 Licença**
 Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
-⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+**⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
