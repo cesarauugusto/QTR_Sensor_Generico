@@ -1,6 +1,4 @@
 # 🚀 sensor_csr
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17593098.svg)](https://doi.org/10.5281/zenodo.17593098)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Arduino](https://img.shields.io/badge/Arduino-Compatible-blue.svg)](https://www.arduino.cc/)
 [![C++](https://img.shields.io/badge/Language-C++-brightgreen.svg)](https://isocpp.org/)
@@ -8,16 +6,21 @@
 Biblioteca para sensores **QTR genéricos (não-Pololu)** desenvolvida por  
 **César Augusto Victor**, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
 📧 cesartri2012@gmail.com  
-
 📘 **DOI:** https://doi.org/10.5281/zenodo.17593098
-
 ---
+**Bilioteca aplicada ao Robo seguidor de Linha do Repositorio:**
+https://github.com/cesarauugusto/Projeto_Robo_Seguidor
+<p align="center">
+  <img src="docs/seguidorgif.gif" width="200">
+</p>
 
 ## 🧩 Sobre a Biblioteca
 
 A **sensor_csr** fornece uma interface simples e robusta para barras de sensores **QTR genéricos analógicos**, amplamente utilizadas em **robôs seguidores de linha**.
-
-Ela segue a filosofia da QTRSensors original da Pololu, mas adiciona:
+<p align="center">
+  <img src="docs/sensor.jpg" width="450">
+</p
+Ela segue a base da QTRSensors original da Pololu, mas adiciona:
 
 - 📌 Calibração simplificada  
 - 📌 Cálculo de erro discreto padrão de robótica (múltiplos de 1000)  
@@ -168,4 +171,5 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
