@@ -24,7 +24,7 @@ A **sensor_csr** fornece uma interface simples e robusta para barras de sensores
 </p
 
 ---
-A Bilioteca foi aplicada ao projeto do Robo seguidor de Linha do Repositorio: [![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
+## A Bilioteca foi aplicada ao projeto do Robo seguidor de Linha do Repositorio: [![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
 
 
 Ela segue a base da QTRSensors original da Pololu, mas adiciona:
@@ -204,6 +204,7 @@ https://doi.org/10.5281/zenodo.17593098***
  ---
 
 ### ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
