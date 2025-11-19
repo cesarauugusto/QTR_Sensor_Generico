@@ -18,6 +18,7 @@ A **sensor_csr** fornece uma interface simples e robusta para barras de sensores
 </p
   
 A Bilioteca foi aplicada ao Robo seguidor de Linha do Repositorio: https://github.com/cesarauugusto/Projeto_Robo_Seguidor
+
 Ela segue a base da QTRSensors original da Pololu, mas adiciona:
 
 - 📌 Calibração simplificada  
@@ -172,6 +173,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 **⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
