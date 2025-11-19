@@ -21,13 +21,12 @@ A **sensor_csr** fornece uma interface simples e robusta para barras de sensores
   <img src="docs/sensor.jpg" width="450">
   <img src="docs/seguidorgif.gif" width="300">
 </p
-  
+
 ## A Bilioteca foi aplicada ao projeto do Robo seguidor de Linha do Repositorio: 
--
-[![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
+
 
 Ela segue a base da QTRSensors original da Pololu, mas adiciona:
-
+[![Repo](https://img.shields.io/badge/GitHub-Projeto__Robo__Seguidor-blue?logo=github)](https://github.com/cesarauugusto/Projeto_Robo_Seguidor)
 - 📌 Calibração simplificada  
 - 📌 Cálculo de erro discreto (múltiplos de 1000)  
 - 📌 Sistema nativo de **detecção de GAP (pistas tracejadas)**  
@@ -203,6 +202,7 @@ https://doi.org/10.5281/zenodo.17593098***
  ---
 
 ### ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
