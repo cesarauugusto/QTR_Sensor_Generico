@@ -102,22 +102,23 @@ Isso fará o robô não movimentar os motores e apenas imprimir os valores dos s
 
 *- No Serial Monitor você verá valores como:*
 
-
-*Copiar código*
+---
 
 **850   870   900   910   ...**
 
 **→ Anote a média.**
 
+---
+
 **🔍 2. Medindo o valor do fundo branco**
 
 *Coloque todos os sensores na área branca da pista:*
 
-*Copiar código*
-
 **300   350   420   380   ...**
 
 **→ Anote a média.**
+
+---
 
 **🎯 3. Definindo os limiares finais**
 
@@ -159,7 +160,7 @@ Isso vai filtrar ruídos e garantir a leitura estável.
 ```
 *Teste na prática em uma curva para garantir o sentido correto.*
 
-# 🤖 Como o Erro é Calculado
+## 🤖 Como o Erro é Calculado
 *A função:*
 ```cpp
 int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
@@ -200,6 +201,7 @@ https://doi.org/10.5281/zenodo.17593098***
  ---
 
 ### ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
