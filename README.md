@@ -85,7 +85,7 @@ codigo_robo	- Controle completo com GAP e PID.
 
 ---
 
-# 📌 Recomendação do uso no Robô Seguidor de Linha.
+### 📌 Recomendação do uso no Robô Seguidor de Linha.
 1️⃣ Abra o exemplo codigo_do_robo
 2️⃣ No código, configure:
 
@@ -143,7 +143,7 @@ Isso vai filtrar ruídos e garantir a leitura estável.
 
 ---
 
-# 🔄 Ajustando a Direção do Controle (TURN_SIGN)
+### 🔄 Ajustando a Direção do Controle (TURN_SIGN)
 
 **Se durante o teste o robô:**
 *virar para o lado ERRADO, ou reagir ao erro invertido, basta trocar TURN_SIGN:*
@@ -174,9 +174,7 @@ int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
 
 **positivo → linha à direita**
 
----
-
-**📊 Tabela Simplificada de Erro**
+### 📊 Tabela Simplificada de Erro
 **Cada padrão binário corresponde a um erro discreto configurado na biblioteca.**
 
 *Ex.:*
@@ -197,7 +195,10 @@ https://doi.org/10.5281/zenodo.17593098***
 ***Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)***
 
+ ---
+
 ### ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
