@@ -77,7 +77,9 @@ else
 
 Assim que um sensor voltar a ler a linha, o GAP encerra.
 Isso permite ao robô atravessar tracejados sem oscilações e sem perder a linha.
+
 ---
+
 # 📂 Exemplos Incluídos
 exemple - Teste exemplo para verificação dos sensores
 
@@ -198,6 +200,7 @@ https://doi.org/10.5281/zenodo.17593098***
  ---
 
 ### ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
