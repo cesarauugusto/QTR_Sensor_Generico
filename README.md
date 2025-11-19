@@ -28,9 +28,6 @@ bits → padrão lido (ex.: "00011000")
 erro → deslocamento da linha (ex.: -2000, 0, +4000)
 gap → detecta traçados tracejados
 
-yaml
-Copiar código
-
 ---
 
 ## ⚙️ Recursos da Biblioteca
@@ -41,17 +38,17 @@ Copiar código
 ✔ Erro discreto de -7000 a +7000  
 ✔ Função `detectarGAP()` integrada  
 ✔ Cálculo interno do último erro válido (`ultimoErroValido`)  
-✔ Alta compatibilidade com DRV8833 e L298N  
+✔ Compatibilidade com DRV8833, L298N e TB6612FNG  
 ✔ Exemplo completo de robô incluso
 
 ---
 
-## 🌐 GAP Detection — Como Funciona
+## 🧠 Nova Função: GAP Detection (Tracejado)
 
 A biblioteca agora inclui a função:
 
 ```cpp
-bool detectarGAP(const char* bits);
+qtr.gapDetection()
 ```
 Ela identifica automaticamente quando a barra lê:
 00000000
@@ -64,24 +61,29 @@ A biblioteca retorna true.
 O robô passa a usar o último erro válido:
 
 ```cpp
-erroControle = ultimoErroValido;
+bool gap = qtr.gapDetection();
+if (gap)
+    erro = ultimoErroValido;
+else
+    ultimoErroValido = erro;
 ```
+
 Assim que um sensor voltar a enxergar 1, o GAP encerra.
 Isso permite ao robô atravessar tracejados sem oscilações e sem perder a linha.
 
 📂 Exemplos Incluídos
-Exemplo	Driver	Descrição
-robot	Genérico	Seguidor simples com controle PD básico.
-codigo_do_robo	DRV8833	Controle completo com GAP, PID simples e curvas suaves.
+exemple - Teste exemplo para verificação dos sensores
+codigo_robo	- Controle completo com GAP e PID.
 
-📌 Recomendado:
+📌 Recomendação do uso no Robô Seguidor de Linha.
 1️⃣ Abra o exemplo codigo_do_robo
 2️⃣ No código, configure:
 
 ```cpp
 #define SENSOR_DEBUG 1
-Isso fará o robô não movimentar os motores e apenas imprimir os valores dos sensores cruamente.
 ```
+Isso fará o robô não movimentar os motores e apenas imprimir os valores dos sensores cruamente.
+
 🔍 1. Medindo o valor da linha preta
 Coloque todos os sensores exatamente sobre a linha preta.
 No Serial Monitor você verá valores como:
@@ -98,7 +100,7 @@ Copiar código
 → Anote a média.
 
 🎯 3. Definindo os limiares finais
-Use ESTE critério (robusto e recomendado):
+Use ESTE critério:
 
 Medida	Exemplo	Limiar recomendado
 Branco medido	400	coloque 500
@@ -111,15 +113,16 @@ Ou seja:
 #define LIMIAR_PRETO  800
 ```
 Isso vai filtrar ruídos e garantir a leitura estável.
+Após o ajuste dos Sensores altere SENSOR_DEBUG Para 0
+
+```cpp
+#define SENSOR_DEBUG 0
+```
 
 🔄 Ajustando a Direção do Controle (TURN_SIGN)
 Se durante o teste o robô:
 
-virar para o lado ERRADO,
-
-ou reagir ao erro invertido,
-
-basta trocar TURN_SIGN:
+virar para o lado ERRADO, ou reagir ao erro invertido, basta trocar TURN_SIGN:
 
 ```cpp
 #define TURN_SIGN +1
@@ -130,9 +133,8 @@ basta trocar TURN_SIGN:
 ```
 Teste na prática em uma curva para garantir o sentido correto.
 
-🤖 Como o Erro é Calculado
+# 🤖 Como o Erro é Calculado
 A função:
-
 ```cpp
 int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
 ```
@@ -166,3 +168,4 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
