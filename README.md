@@ -3,11 +3,11 @@
 [![Arduino](https://img.shields.io/badge/Arduino-Compatible-blue.svg)](https://www.arduino.cc/)
 [![C++](https://img.shields.io/badge/Language-C++-brightgreen.svg)](https://isocpp.org/)
 
-Biblioteca para sensores **QTR genéricos (não-Pololu) desenvolvida por  
+**Biblioteca para sensores** QTR genéricos ***(não-Pololu)*** desenvolvida por  
 **César Augusto Victor**, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
-📧 cesartri2012@gmail.com
+***📧 cesartri2012@gmail.com***
 
-📘 DOI: https://doi.org/10.5281/zenodo.17593098
+***📘 DOI: https://doi.org/10.5281/zenodo.17593098***
 
 ---
 
@@ -194,6 +194,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 **⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
