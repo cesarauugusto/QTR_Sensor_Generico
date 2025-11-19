@@ -6,154 +6,163 @@
 [![C++](https://img.shields.io/badge/Language-C++-brightgreen.svg)](https://isocpp.org/)
 
 Biblioteca para sensores **QTR genéricos (não-Pololu)** desenvolvida por  
-**César Augusto Victor** — Mestrando em Engenharia Elétrica e de Computação (UFC Sobral)  
+**César Augusto Victor**, Mestrando em Engenharia Elétrica e de Computação — UFC Sobral  
 📧 cesartri2012@gmail.com  
 
-📘 **DOI:** [10.5281/zenodo.17593098](https://doi.org/10.5281/zenodo.17593098)
+📘 **DOI:** https://doi.org/10.5281/zenodo.17593098
 
 ---
 
 ## 🧩 Sobre a Biblioteca
 
-A **sensor_csr** é uma biblioteca para **Arduino/C++** desenvolvida para uso com barras de sensores **QTR genéricos**, amplamente empregadas em **robôs seguidores de linha**, como mostrado abaixo:
+A **sensor_csr** fornece uma interface simples e robusta para barras de sensores **QTR genéricos analógicos**, amplamente utilizadas em **robôs seguidores de linha**.
 
-![Demonstração do sensor_csr](docs/sensor.jpg)
+Ela segue a filosofia da QTRSensors original da Pololu, mas adiciona:
 
-Ela oferece uma interface simples e compatível com a biblioteca **QTRSensors da Pololu**, porém otimizada para sensores **analógicos de baixo custo**, com foco em fácil integração com projetos de robótica.
+- 📌 Calibração simplificada  
+- 📌 Cálculo de erro discreto padrão de robótica (múltiplos de 1000)  
+- 📌 Sistema nativo de **detecção de GAP (pistas tracejadas)**  
+- 📌 Função única **ErroSensor()**, que retorna automaticamente:
 
----
+bits → padrão lido (ex.: "00011000")
+erro → deslocamento da linha (ex.: -2000, 0, +4000)
+gap → detecta traçados tracejados
 
-## ⚙️ Principais Recursos
-
-✅ Calibração automática individual de cada sensor  
-✅ Leitura analógica normalizada entre **0–1000**  
-✅ Conversão binária automática (`0 = branco` / `1 = preto`)  
-✅ Cálculo de erro discreto no intervalo **-4000 a +4000**  
-✅ Função direta `ErroSensor()` para integração simples  
-✅ Compatível com **DRV8833** e **L298N**  
-✅ Suporte completo a **pistas tracejadas (GAP detection)**  
+yaml
+Copiar código
 
 ---
 
+## ⚙️ Recursos da Biblioteca
 
-## 🤖 Códigos de Exemplo Incluídos
-
-| Código | Driver | Descrição |
-|:-------|:--------|:-----------|
-| **`robot`** | Genérico | Exemplo base de **robô seguidor de linha padrão**, com controle PD simples e suporte aos sensores QTR genéricos. Ideal para aprendizado inicial e testes de calibração. |
-| **`robot2`** | **DRV8833 (2 pinos de controle)** | Versão **aperfeiçoada** com detecção de **gaps (pistas tracejadas)**. Utiliza drivers que empregam **apenas dois pinos por motor** (xIN1/xIN2), como o **DRV8833** — onde o PWM é aplicado diretamente em um dos pinos. |
-| **`robot3`** | **L298N / TB6612FNG (3 pinos de controle)** | Mesma lógica e controle do `robot2`, mas adaptada para drivers **com 3 pinos por motor**: dois de direção (**IN1/IN2**) e um pino **Enable (PWM)** para controle de velocidade — comum em **L298N** e **TB6612FNG**. |
-
----
-
-## 💡 Sistema de GAP Detection
-
-Durante a leitura, se todos os sensores retornam `00000000`, o robô interpreta como um **espaço tracejado (gap)** e:
-
-1. Avança suavemente por um ciclo;  
-2. Caso o gap continue, o controle usa o **último erro válido (`lastNonZeroErro`)** para corrigir a trajetória automaticamente.
-
-🧭 Isso garante **passagem fluida** por tracejados sem perder a linha nem gerar oscilações.
+✔ Calibração automática  
+✔ Normalização das leituras (0–1000)  
+✔ Conversão binária (0 = branco / 1 = preto)  
+✔ Erro discreto de -7000 a +7000  
+✔ Função `detectarGAP()` integrada  
+✔ Cálculo interno do último erro válido (`ultimoErroValido`)  
+✔ Alta compatibilidade com DRV8833 e L298N  
+✔ Exemplo completo de robô incluso
 
 ---
 
-## 🔍 Como Funciona
+## 🌐 GAP Detection — Como Funciona
 
-Cada sensor lê um valor analógico **(0–1023)** proporcional à luz refletida:
-
-| Cor da Superfície | Intensidade | Valor Analógico | Bit |
-|:------------------|:-------------|:----------------|:----|
-| Branco | Alta reflexão | Alto | 0 |
-| Preto | Baixa reflexão | Baixo | 1 |
-
-Durante a calibração (`qtr.calibrate()`), a biblioteca coleta valores mínimos e máximos e normaliza tudo entre **0 e 1000**.
-
-Os limiares de cor devem ser definidos no seu código `.ino`:
+A biblioteca agora inclui a função:
 
 ```cpp
-#define LIMIAR_BRANCO 600
-#define LIMIAR_PRETO  900
+bool detectarGAP(const char* bits);
 ```
-< LIMIAR_BRANCO → branco (0)
-> LIMIAR_PRETO → preto (1)
+Ela identifica automaticamente quando a barra lê:
+00000000
+Quando isso ocorre, significa que o robô:
+entrou em um trecho tracejado ou saiu momentaneamente da linha por irregularidade da pista.
 
-intermediário → zona “cinza” (tratado como branco)
-
-Esses limiares variam conforme:
-
-Tipo de sensor (QTR genérico, TCRT5000, etc.)
-
-Tipo de pista (fita preta em fundo branco ou o inverso)
-
-Iluminação do ambiente
-
-## 🧪 **Calibração e Limiar Ideal**
-
-Use o trecho abaixo para medir os valores médios de **branco** e **preto**:
+🔧 Comportamento:
+O código detecta o GAP.
+A biblioteca retorna true.
+O robô passa a usar o último erro válido:
 
 ```cpp
-uint16_t valores[NUM_SENSORES];
-qtr.readRaw(valores);
-for (int i = 0; i < NUM_SENSORES; i++) {
-  Serial.print(valores[i]);
-  Serial.print("\t");
-}
-Serial.println();
-delay(200);
+erroControle = ultimoErroValido;
 ```
-## ⚙️ **Procedimento de Calibração**
+Assim que um sensor voltar a enxergar 1, o GAP encerra.
+Isso permite ao robô atravessar tracejados sem oscilações e sem perder a linha.
 
-1. Coloque o robô **sobre o branco da pista** → anote a média.  
-2. Coloque o robô **sobre o preto da linha** → anote a média.  
-3. Atualize os valores no arquivo `.ino`:
-4. 
+📂 Exemplos Incluídos
+Exemplo	Driver	Descrição
+robot	Genérico	Seguidor simples com controle PD básico.
+codigo_do_robo	DRV8833	Controle completo com GAP, PID simples e curvas suaves.
+
+📌 Recomendado:
+1️⃣ Abra o exemplo codigo_do_robo
+2️⃣ No código, configure:
+
 ```cpp
-#define LIMIAR_BRANCO 600
-#define LIMIAR_PRETO 900
+#define SENSOR_DEBUG 1
+Isso fará o robô não movimentar os motores e apenas imprimir os valores dos sensores cruamente.
 ```
+🔍 1. Medindo o valor da linha preta
+Coloque todos os sensores exatamente sobre a linha preta.
+No Serial Monitor você verá valores como:
 
-💡 Esses valores são passados automaticamente para a biblioteca em cada chamada de ErroSensor().
+Copiar código
+850   870   900   910   ...
+→ Anote a média.
 
-# 🧠 Lógica Interna Simplificada
+🔍 2. Medindo o valor do fundo branco
+Coloque todos os sensores na área branca da pista:
 
-Etapas do processamento:
-1. Leitura analógica: coleta e média das leituras de cada sensor.
-2. Normalização: mapeia para a faixa 0–1000 com base na calibração.
-3. Binarização: converte em 0 ou 1 conforme os limiares definidos.
-4. Cálculo do erro: deslocamento médio da linha com base nos sensores ativos.
-5. Saída discreta: erro múltiplo de 1000.
+Copiar código
+300   350   420   380   ...
+→ Anote a média.
 
-# 📊 Tabela de Erro
+🎯 3. Definindo os limiares finais
+Use ESTE critério (robusto e recomendado):
 
-| Erro  | Significado          |
-|:------|:---------------------|
-|-4000  | Linha à esquerda     |
-|0      | Centralizado         |
-|+4000  | Linha à direita      |
+Medida	Exemplo	Limiar recomendado
+Branco medido	400	coloque 500
+Preto medido	900	coloque 800
 
-🧩 Exemplo de Padrão Lido
- bits = "00011000"
- ----------------------------------------------------------------------------------
- 
-#🧾 Citação 
-César Augusto Victor, C. (2025). Library for generic QTR sensors (1.0). Zenodo. 
-📘 https://doi.org/10.5281/zenodo.17593098
+Ou seja:
 
-#📜 Licença
-Este projeto é licenciado sob a MIT License — livre para uso acadêmico e comercial,
-desde que citada a autoria.
+```cpp
+#define LIMIAR_BRANCO 500
+#define LIMIAR_PRETO  800
+```
+Isso vai filtrar ruídos e garantir a leitura estável.
+
+🔄 Ajustando a Direção do Controle (TURN_SIGN)
+Se durante o teste o robô:
+
+virar para o lado ERRADO,
+
+ou reagir ao erro invertido,
+
+basta trocar TURN_SIGN:
+
+```cpp
+#define TURN_SIGN +1
+```
+👉 Ou:
+```cpp
+#define TURN_SIGN -1
+```
+Teste na prática em uma curva para garantir o sentido correto.
+
+🤖 Como o Erro é Calculado
+A função:
+
+```cpp
+int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
+```
+retorna valores como:
+-7000  -6000 ... -1000   0   +1000 ... +7000
+Isso representa:
+
+negativo → linha à esquerda
+
+zero → centralizado
+
+positivo → linha à direita
+
+📊 Tabela Simplificada de Erro
+Cada padrão binário corresponde a um erro discreto configurado na biblioteca.
+
+Ex.:
+00011000  → erro = 0   (centralizado)
+00111000  → erro = -1 * 1000
+00001110  → erro = +3 * 1000
+10000000  → erro = +7 * 1000
+
+🧾 Citação
+Se utilizar esta biblioteca em projetos acadêmicos:
+
+César Augusto Victor. (2025). Library for generic QTR sensors (1.0). Zenodo.
+https://doi.org/10.5281/zenodo.17593098
+
+📜 Licença
+Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, desde que citada a autoria.
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 ⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
-
-
-
-
-
-
-
-
-
-
-
-
