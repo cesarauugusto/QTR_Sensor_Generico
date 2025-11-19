@@ -76,6 +76,7 @@ Isso permite ao robô atravessar tracejados sem oscilações e sem perder a linh
 ---
 # 📂 Exemplos Incluídos
 exemple - Teste exemplo para verificação dos sensores
+
 codigo_robo	- Controle completo com GAP e PID.
 
 ---
@@ -89,7 +90,7 @@ codigo_robo	- Controle completo com GAP e PID.
 ```
 Isso fará o robô não movimentar os motores e apenas imprimir os valores dos sensores cruamente.
 
-** 🔍 1. Medindo o valor da linha preta **
+**🔍 1. Medindo o valor da linha preta**
 
 *Coloque todos os sensores exatamente sobre a linha preta.*
 
@@ -98,9 +99,9 @@ Isso fará o robô não movimentar os motores e apenas imprimir os valores dos s
 
 *Copiar código*
 
-*850   870   900   910   ...*
+**850   870   900   910   ...**
 
-*→ Anote a média.*
+**→ Anote a média.**
 
 **🔍 2. Medindo o valor do fundo branco**
 
@@ -108,19 +109,19 @@ Isso fará o robô não movimentar os motores e apenas imprimir os valores dos s
 
 *Copiar código*
 
-*300   350   420   380   ...*
+**300   350   420   380   ...**
 
-*→ Anote a média.*
+**→ Anote a média.**
 
 **🎯 3. Definindo os limiares finais**
 
-*Use ESTE critério:*
+***Use ESTE critério:***
 
 *Medida	Exemplo	Limiar recomendado*
 
-*Branco medido	400	coloque 500*
+**Branco medido	400	coloque 500**
 
-*Preto medido	900	coloque 800*
+**Preto medido	900	coloque 800**
 
 *Ou seja:*
 
@@ -159,15 +160,15 @@ int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
 ```
 *retorna valores como:*
 
-*-7000  -6000 ... -1000   0   +1000 ... +7000*
+***-7000  -6000 ... -1000   0   +1000 ... +7000***
 
 *Isso representa:*
 
-*negativo → linha à esquerda*
+**negativo → linha à esquerda**
 
 *zero → centralizado*
 
-*positivo → linha à direita*
+**positivo → linha à direita**
 
 ---
 
@@ -175,10 +176,10 @@ int erro = qtr.ErroSensor(bits, LIMIAR_BRANCO, LIMIAR_PRETO, false, 0);
 **Cada padrão binário corresponde a um erro discreto configurado na biblioteca.**
 
 *Ex.:*
-*00011000  → erro = 0   (centralizado)*
-*00111000  → erro = -1 * 1000*
-*00001110  → erro = +3 * 1000*
-*10000000  → erro = +7 * 1000*
+**00011000  → erro = 0   (centralizado)**
+**00111000  → erro = -1 * 1000**
+**00001110  → erro = +3 * 1000**
+**10000000  → erro = +7 * 1000**
 
  ---
  
@@ -193,6 +194,7 @@ Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, d
 © 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
 
 **⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+
 
 
 
