@@ -194,10 +194,11 @@ Se utilizar esta biblioteca em projetos acadêmicos:
 https://doi.org/10.5281/zenodo.17593098***
 
 **📜 Licença**
-Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, desde que citada a autoria.
-© 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)
+***Licenciado sob MIT License — livre para uso pessoal, acadêmico e comercial, desde que citada a autoria.
+© 2025 César Augusto Victor — Universidade Federal do Ceará (UFC - Sobral)***
 
-**⭐ Se este projeto te ajudou, deixe uma estrela no repositório!**
+###⭐ Se este projeto te ajudou, deixe uma estrela no repositório!
+
 
 
 
